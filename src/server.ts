@@ -23,7 +23,11 @@ app.post("/messages", async (req, res) => {
     await transport.handlePostMessage(req, res);
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.get("/health", (req, res) => {
+    res.status(200).send("OK");
+});
+
+const PORT = Number(process.env.PORT) || 3000;
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Todoist MCP Server running on port ${PORT}`);
 });
